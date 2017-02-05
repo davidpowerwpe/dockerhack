@@ -1,9 +1,10 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+<% post_title = 'test post' %>
 
 one:
-  title: MyString
-  description: MyText
+  title: <%=post_title%> 1
+  description: this is a test post (1)
 
 two:
-  title: MyString
-  description: MyText
+  title: test post 2
+  description: t
