@@ -1,0 +1,42 @@
+
+version: "3"
+services:
+
+  db:
+    image: postgres:9.4
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    networks:
+      - vlan
+    deploy:
+      placement:
+        constraints: [node.role == dbserver]
+
+  app:
+    image: davidpowerwp/blog
+    ports:
+      - "3000"
+    networks:
+      - vlan
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 10s
+        max_attempts: 3
+        window: 120s
+      placement:
+        constraints: [node.role == appserver]
+
+  jenkins:
+    image: jenkins:latest
+    networks:
+      -vlan
+    deploy:
+      placement:
+        constraints: [node.role == jenkinsserver]
+
+networks:
+  vlan:
+
+volumes:
+  db-data:
