@@ -1,5 +1,7 @@
 FROM ruby:2.4
 
+sudo apt-get install nodejs
+
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 
