@@ -1,15 +1,12 @@
-FROM ruby:2.4
+FROM ruby:2.3.3
 
-sudo apt-get install nodejs
+RUN apt-get update && apt-get install nodejs -y
 
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 
-COPY Gemfile /usr/src/app/
-COPY Gemfile.lock /usr/src/app/
-RUN bundle install
-
 COPY . /usr/src/app
+RUN bundle install
 
 EXPOSE 3000
 CMD ["rails", "server", "-b", "0.0.0.0"]
