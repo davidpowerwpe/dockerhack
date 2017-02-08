@@ -30,7 +30,7 @@ services:
   jenkins:
     image: jenkins:latest
     networks:
-      -vlan
+      - vlan
     deploy:
       placement:
         constraints: [node.role == jenkinsserver]
